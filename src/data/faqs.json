@@ -1,0 +1,68 @@
+{
+  "beer": [
+    ["What makes RedDot beer different?", "Our beers are unfiltered, unpasteurised and handcrafted in our own brewery on Dempsey Hill, so they reach your glass fresher and with more flavour than mass-produced beer."],
+    ["Which RedDot beers have won awards?", "Yuzu Craze and Heartlander Stout each won Singapore Gold at the 2024 World Beer Awards, in the Flavoured Beer (Fruit &amp; Vegetable) and Flavoured Stout &amp; Porter categories."],
+    ["Can I buy RedDot beer to take home?", "Yes. 4-packs are S$26 on our <a href=\"https://shop.reddotbrewhouse.com.sg/\">online shop</a>, with free delivery in Singapore for orders above S$75."],
+    ["Can I visit the brewery?", "Yes. We run <a href=\"/brewery-tour-singapore/\">brewery tours and tastings</a> from $30++ per person."]
+  ],
+  "food": [
+    ["Do I need to book a table?", "Booking is recommended. You can <a href=\"https://cho.pe/dineatreddotbrewhousedempseyhillsg\">reserve on Chope</a> or call +65 6475 0500."],
+    ["Can I bring my dog to dinner?", "Yes. RedDot is pet-friendly, and dogs are welcome both indoors and in the garden."],
+    ["Is RedDot good for families?", "Yes. We've been a family-friendly restaurant since 2007, with kids' activities like pizza making, face painting on Sundays and fish catching."]
+  ],
+  "garden": [
+    ["Are dogs allowed inside RedDot BrewHouse?", "Yes. Our open, naturally ventilated restaurant welcomes dogs indoors and in the garden."],
+    ["When is the live band on?", "Our resident band, The Parachutes, play every Friday from 7:30pm till late."],
+    ["What kids' activities do you have?", "Face painting every Sunday (from $8), pizza making on request ($20++ per child), fish catching ($12) and balloon sculpting subject to availability (from $3)."],
+    ["Is there parking?", "Yes, parking at RedDot is free."]
+  ],
+  "events": [
+    ["How many guests can RedDot BrewHouse hold?", "From up to 30 in our upper indoor deck to 250–300 guests for exclusive use of the whole restaurant."],
+    ["What is the minimum spend for an event?", "Minimum spend starts from $3,000++ for the upper indoor deck on a Monday to Wednesday lunch, and varies by space, day and time. See our <a href=\"/garden-wedding-venue-singapore/\">wedding packages</a> for the full table."],
+    ["Can we bring our pets to an event?", "Yes. RedDot is a pet-friendly venue, indoors and out."],
+    ["Is parking available for guests?", "Yes, parking is free for your guests."]
+  ],
+  "weddings": [
+    ["Can we hold our solemnisation at RedDot?", "Yes. We host solemnisations, ROMs and receptions, from intimate ceremonies in the upper indoor deck to 300-guest celebrations."],
+    ["How much does a wedding at RedDot cost?", "Minimum spend starts from $3,000++ for up to 30 guests on a Monday to Wednesday lunch. Wedding menus start from $90 per guest."],
+    ["Are Friday weddings available?", "Yes, Friday events are available for lunch only."],
+    ["What if it rains?", "Our venue combines open-air garden with sheltered, ventilated indoor decks, so you have cover when you need it."]
+  ],
+  "corporate": [
+    ["Can RedDot host our D&amp;D?", "Yes. We host D&amp;Ds, product launches and networking events, with exclusive use of the whole restaurant for 250–300 guests."],
+    ["What catering options are there?", "Choose western communal or buffet menus for seated events, or canapés and charcuterie for standing receptions."],
+    ["Can we add a team activity?", "Yes. Add a <a href=\"/brewery-tour-singapore/\">beer talk or beer appreciation session</a> led by our brewers."],
+    ["Is RedDot SG Clean certified?", "Yes. RedDot BrewHouse is SG Clean certified by the National Environment Agency."]
+  ],
+  "private": [
+    ["Can I host my dog's birthday at RedDot?", "Yes. Dog birthdays are one of our favourite parties. Tell us about your plans in the enquiry form."],
+    ["What can kids do at a party?", "Pizza making ($20++ per child), face painting, balloon sculpting and fish catching can all be added."],
+    ["What's the smallest space I can book?", "The upper indoor deck seats up to 30 guests, with a minimum spend from $3,000++."]
+  ],
+  "tours": [
+    ["How much is a brewery tour?", "Beer talk starts from $30++ per person and beer appreciation, which adds a food sampling board, starts from $50++ per person."],
+    ["How long is a tour?", "Both sessions last about 1.5 hours."],
+    ["Are tours available in Mandarin?", "Classes are conducted in English. Let our events team know in advance if you need the session in Mandarin."],
+    ["Can tours be part of a company event?", "Yes. Tours are popular for team outings and can be combined with a <a href=\"/corporate-event-venue-singapore/\">corporate event</a>."]
+  ],
+  "contract": [
+    ["What can RedDot brew for my brand?", "Craft beer, low-ABV beer, hard seltzer, ready-to-drink cocktails and culinary beers."],
+    ["Do you help with recipes and packaging?", "Yes. We handle recipe development, R&amp;D, full-scale production, packaging and label design."],
+    ["How do I start a contract brewing project?", "Email <a href=\"mailto:rd@reddotbrewhouse.com.sg\">rd@reddotbrewhouse.com.sg</a> or call +65 6475 0500 to tell us about your idea."]
+  ],
+  "consulting": [
+    ["What does brewery consulting cover?", "Layout planning, equipment specification, sourcing, commissioning, recipe development and hands-on staff training."],
+    ["Do you consult on distilleries too?", "Yes. We offer consultancy for both breweries and distilleries."],
+    ["Who leads the consulting?", "Brewmaster and distiller Crystalla Huang, who trained at VLB Berlin and designed RedDot's own brewery."]
+  ],
+  "distribution": [
+    ["Can I stock RedDot beer in my venue?", "Yes. Email <a href=\"mailto:rd@reddotbrewhouse.com.sg\">rd@reddotbrewhouse.com.sg</a> for our trade range and pricing."],
+    ["Are RedDot beers filtered or pasteurised?", "No. Our beers are unfiltered and unpasteurised."]
+  ],
+  "visit": [
+    ["Where is RedDot BrewHouse?", "25A Dempsey Road, #01-01, Singapore 247691, on Dempsey Hill."],
+    ["Is there parking at RedDot?", "Yes, parking is free."],
+    ["Are dogs allowed?", "Yes. Dogs are welcome indoors and in the garden."],
+    ["How do I make a reservation?", "Book online through <a href=\"https://cho.pe/dineatreddotbrewhousedempseyhillsg\">Chope</a> or call +65 6475 0500."]
+  ]
+}

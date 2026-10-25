@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-SG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RedDot BrewHouse">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23C8102E'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://static.wixstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="application/ld+json">
+{{jsonld}}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="/" aria-label="RedDot BrewHouse, home">
+        <img src="https://static.wixstatic.com/media/be081f_f91c777214e240a5a14543c820666b05~mv2.png/v1/fill/w_312,h_100,al_c,q_90,enc_auto/logo.png" alt="RedDot BrewHouse" width="156" height="50">
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+{{nav}}
+        <a class="nav-shop" href="https://shop.reddotbrewhouse.com.sg/">Shop</a>
+      </nav>
+      <a class="btn btn-red header-cta" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+{{content}}
+  </main>
+
+  {{> footer}}
+
+  <a class="mobile-book btn btn-red" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
+
+  <script src="/assets/script.js" defer></script>
+</body>
+</html>

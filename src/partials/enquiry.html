@@ -1,0 +1,26 @@
+<form class="enquiry" id="enquiry" novalidate>
+          <h2 class="enquiry-title">Tell us about your event</h2>
+          <p class="enquiry-lede">Share a few details and our events team will get back to you with available dates and menus.</p>
+          <div class="field-grid">
+            <label>Full name<input name="name" autocomplete="name" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+            <label>Event date<input name="date" type="date" required></label>
+            <label>Number of guests<input name="guests" type="number" min="1" inputmode="numeric" required></label>
+            <label>Type of event
+              <select name="type" required>
+                <option value="">Choose one</option>
+                <option>Wedding or solemnisation</option>
+                <option>Corporate event</option>
+                <option>Birthday or private party</option>
+                <option>Kids' party</option>
+                <option>Brewery tour or tasting</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label class="full">Anything else we should know?<textarea name="notes" rows="3"></textarea></label>
+          </div>
+          <p class="form-error" role="alert" hidden></p>
+          <button class="btn btn-red" type="submit">Send enquiry</button>
+          <p class="form-done" role="status" hidden></p>
+        </form>

@@ -1,0 +1,16 @@
+# Old Wix URLs -> new pages (301 keeps existing Google rankings)
+/about               /about/                              301
+/brewery             /craft-beer/                         301
+/menu                /menu/                               301
+/events              /events/                             301
+/enquiries           /events/                             301
+/weddings            /garden-wedding-venue-singapore/     301
+/corporate-events    /corporate-event-venue-singapore/    301
+/private-gathering   /private-party-venue-singapore/      301
+/kids-actitvities    /dog-friendly-restaurant-dempsey/    301
+/brewery-tour        /brewery-tour-singapore/             301
+/contract-brewing    /contract-brewing-singapore/         301
+/consulting          /brewery-consulting-singapore/       301
+/beerdistribution    /beer-distribution-singapore/        301
+/contact             /visit/                              301
+/reservation         https://cho.pe/dineatreddotbrewhousedempseyhillsg  302
