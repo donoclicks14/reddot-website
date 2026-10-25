@@ -1,0 +1,34 @@
+    <div class="page-top"></div>
+    {{breadcrumb}}
+    <section class="pdp" style="--tint:{{p.tint}}">
+      <div class="wrap pdp-grid">
+        <div class="pdp-media">
+          <div class="pdp-stage">{{p.gallery}}</div>
+          {{p.thumbs}}
+        </div>
+        <div class="pdp-info">
+          <p class="product-meta">{{p.meta}}</p>
+          <h1 class="pdp-title">{{p.name}}</h1>
+          {{p.award}}
+          <p class="pdp-price">{{p.price}}</p>
+          <p class="pdp-notes">{{p.notes}}</p>
+          {{p.buy}}
+          <ul class="pdp-perks">
+            <li>Free delivery in Singapore on orders over S$75</li>
+            <li>Brewed and bottled on Dempsey Hill</li>
+          </ul>
+          <dl class="pdp-details">{{p.details}}</dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="display">You might also like</h2>
+        </div>
+        <div class="product-grid">
+{{p.related}}
+        </div>
+      </div>
+    </section>

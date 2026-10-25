@@ -5,50 +5,53 @@ path: /
 crumb: Home
 ---
     <section class="hero" id="top">
-      <img class="hero-img" fetchpriority="high" src="{{img:be081f_91140c26e0654f219f41a013e1569e47~mv2.jpg:1920:1200}}" alt="The glasshouse dining room at RedDot BrewHouse, surrounded by tropical greenery">
-      <div class="hero-shade"></div>
-      <div class="wrap hero-inner">
-        <h1 class="hero-title">
-          <span class="line">Brewed in</span>
-          <span class="line">the garden</span>
-          <span class="line">since 2007</span>
-        </h1>
-        <p class="hero-lede">RedDot BrewHouse is Singapore's pioneering craft brewery and restaurant, tucked into the green slopes of Dempsey Hill. Beer straight from our own tanks, food for the whole table, and room for the dog.</p>
-        <div class="hero-actions">
-          <a class="btn btn-light" href="/events/">Plan an event</a>
-          <a class="text-link light" href="/craft-beer/">See what's pouring</a>
+      <div class="hero-frame">
+        <img class="hero-img" fetchpriority="high" src="{{img:be081f_91140c26e0654f219f41a013e1569e47~mv2.jpg:2000:1300}}" alt="The glasshouse dining room at RedDot BrewHouse, surrounded by tropical greenery">
+        <div class="hero-shade"></div>
+        <div class="wrap hero-inner">
+          <h1 class="hero-title">
+            <span class="line"><span>Brewed in</span></span>
+            <span class="line"><span>the garden</span></span>
+            <span class="line"><span>since 2007</span></span>
+          </h1>
+          <div class="hero-bottom">
+            <div>
+              <p class="hero-lede">RedDot BrewHouse is Singapore's pioneering craft brewery and restaurant, tucked into the green slopes of Dempsey Hill. Beer straight from our own tanks, food for the whole table, and room for the dog.</p>
+              <div class="hero-actions">
+                <a class="btn btn-light" href="/shop/">Shop our beer</a>
+                <a class="btn btn-glass" href="/events/">Plan an event</a>
+              </div>
+            </div>
+            <ul class="hero-chips" aria-label="At a glance">
+              <li>Free parking</li>
+              <li>Dogs welcome</li>
+              <li>Live band Fridays</li>
+              <li>Family-run since 2007</li>
+            </ul>
+          </div>
         </div>
+        <a class="dot-cta" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg"><span>Book<br>a table</span></a>
       </div>
-      <a class="dot-cta" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg"><span>Book<br>a table</span></a>
     </section>
 
-    <section class="facts" aria-label="At a glance">
-      <ul class="wrap facts-list">
-        <li><strong>Free parking</strong> right at the door</li>
-        <li><strong>Dogs welcome</strong> indoors and out</li>
-        <li><strong>Live band</strong> every Friday from 7:30pm</li>
-        <li><strong>Family-run</strong> by two generations of brewers</li>
-      </ul>
-    </section>
+    {{> ticker}}
 
-    <section class="taps">
-      <div class="wrap">
+    <section class="shelf-sec">
+      <div class="wrap shelf-head">
         <div class="section-head">
-          <h2 class="display">On tap at the brewhouse</h2>
-          <p>Unfiltered, unpasteurised and brewed a few metres from your table. Every beer gets its own dot, in its own colour. Tap a beer to read more.</p>
+          <h2 class="display">Fresh from the tanks</h2>
+          <p>Unfiltered, unpasteurised and brewed on Dempsey Hill. Grab a bottle, a 4-pack or a whole carton, delivered free in Singapore over S$75.</p>
         </div>
-        {{> tap-list}}
-        <div class="taps-foot">
-          <p>Two golds at the 2024 World Beer Awards, and a tap list that changes with the seasons.</p>
-          <a class="btn btn-outline-light" href="/craft-beer/">All about our beer</a>
-        </div>
+        <a class="btn btn-dark" href="/shop/">Shop all</a>
       </div>
+      {{shelf}}
     </section>
 
     <section class="story">
       <div class="wrap story-grid">
         <figure class="story-img">
           <img loading="lazy" src="{{img:be081f_5e67d6c3af4647abbf8ec56d531eb0eb~mv2.jpg:1200:1400}}" alt="Stainless steel brewing tanks inside the RedDot brewhouse">
+          <figcaption class="sticker"><strong>2 × Gold</strong>World Beer Awards 2024</figcaption>
         </figure>
         <div class="story-copy">
           <h2 class="display">A family brewery, two generations in</h2>
@@ -56,8 +59,43 @@ crumb: Home
           <p>Today the brewhouse is run by his daughter, Crystalla Huang, who trained in brewing science at VLB Berlin and designed the current brewery herself.</p>
           <div class="inline-links">
             <a class="text-link" href="/about/">Read our story</a>
-            <a class="text-link" href="/brewery-tour-singapore/">Take a brewery tour</a>
+            <a class="text-link" href="/craft-beer/">See what's on tap</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bento-sec">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="display">Something on every day of the week</h2>
+          <p>Bring the dog on a Tuesday, the band plays on Friday, the kids get their faces painted on Sunday. And when it's your turn to celebrate, the whole place is yours.</p>
+        </div>
+        <div class="bento">
+          <a class="tile tile-xl" href="/dog-friendly-restaurant-dempsey/">
+            <img loading="lazy" src="{{img:85e839_4bb3580125c14d3086131c3714ec74ca~mv2.jpg:1200:1200}}" alt="">
+            <span class="tile-text"><strong>Dogs welcome</strong>Indoors and out, every day</span>
+          </a>
+          <a class="tile" href="/dog-friendly-restaurant-dempsey/">
+            <img loading="lazy" src="{{img:85e839_3122dd2849314945ac0b28e39d5a6645~mv2.jpg:800:600}}" alt="">
+            <span class="tile-text"><strong>Live band</strong>Fridays from 7:30pm</span>
+          </a>
+          <a class="tile" href="/brewery-tour-singapore/">
+            <img loading="lazy" src="{{img:be081f_5e67d6c3af4647abbf8ec56d531eb0eb~mv2.jpg:800:600}}" alt="">
+            <span class="tile-text"><strong>Brewery tours</strong>From $30++ per person</span>
+          </a>
+          <a class="tile" href="/garden-wedding-venue-singapore/">
+            <img loading="lazy" src="{{img:be081f_755f06a54d2b4113a602474d990e1ab4~mv2.jpg:800:600}}" alt="">
+            <span class="tile-text"><strong>Garden weddings</strong>For 30 to 300 guests</span>
+          </a>
+          <a class="tile" href="/corporate-event-venue-singapore/">
+            <img loading="lazy" src="{{img:be081f_6362a21c77394a5cb99410d5c60cbfc7~mv2.jpg:800:600}}" alt="">
+            <span class="tile-text"><strong>Corporate events</strong>D&amp;Ds, launches, team nights</span>
+          </a>
+          <a class="tile tile-wide" href="/private-party-venue-singapore/">
+            <img loading="lazy" src="{{img:85e839_72f311a285b942698816857c6977bcfd~mv2.jpg:1200:600}}" alt="">
+            <span class="tile-text"><strong>Private parties</strong>Birthdays, family days and dog birthdays</span>
+          </a>
         </div>
       </div>
     </section>
@@ -71,34 +109,6 @@ crumb: Home
       <div class="wrap eat-foot">
         <a class="btn btn-red" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
         <a class="text-link" href="/menu/">See the menu</a>
-      </div>
-    </section>
-
-    <section class="garden">
-      <div class="wrap garden-grid">
-        <div class="garden-copy">
-          <h2 class="display">Bring everyone. Including the dog.</h2>
-          <p>Open-air, naturally ventilated and wrapped in greenery, the garden is a calm place to bring kids, parents, clients and four-legged friends.</p>
-          {{> week}}
-          <a class="text-link" href="/dog-friendly-restaurant-dempsey/">Dogs, kids and live music</a>
-        </div>
-        <div class="garden-imgs">
-          <img loading="lazy" class="g1" src="{{img:85e839_9be090a416544e48aac42aceb39322c1~mv2.jpg:900:1100}}" alt="Two dogs dressed up at a dog birthday party in the restaurant">
-          <img loading="lazy" class="g2" src="{{img:be081f_2e1b96620815485ca96f5c2fe8cd1415~mv2.jpg:900:700}}" alt="Tables in the open-air garden under the trees">
-        </div>
-      </div>
-    </section>
-
-    <section class="events-teaser">
-      <div class="wrap">
-        <div class="events-hero">
-          <img loading="lazy" src="{{img:be081f_755f06a54d2b4113a602474d990e1ab4~mv2.jpg:1800:900}}" alt="Chairs and flowers set up for a garden wedding at RedDot BrewHouse">
-        </div>
-        <div class="section-head events-head">
-          <h2 class="display">Weddings, D&amp;Ds and parties for up to 300</h2>
-          <p>Book a deck, a garden or the whole place. Our events team handles the food, the beer and the timings, so you can enjoy the day.</p>
-        </div>
-        {{> event-links}}
       </div>
     </section>
 

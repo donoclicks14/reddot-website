@@ -1,0 +1,360 @@
+{
+  "_note": "Prices, notes and ABV taken from shop.reddotbrewhouse.com.sg (Oct 2026). Photos downloaded from their shop and resized to 800px in src/assets/products/.",
+  "img_base": "/assets/products/",
+  "products": [
+    {
+      "slug": "monster-green-lager",
+      "name": "Monster Green Lager",
+      "cat": "beer",
+      "style": "Spirulina lager",
+      "abv": "5%",
+      "tint": "#5c9a2c",
+      "featured": true,
+      "notes": "Spirulina-infused lager that pours sparkling green. Citrus and malt on the nose, with a clean, crisp, malty finish and a champagne-like fizz.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Monstergreen.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "MONSTER_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "MONSTER_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "yuzu-craze-pilsner",
+      "name": "Yuzu Craze Pilsner",
+      "cat": "beer",
+      "style": "Yuzu pilsner",
+      "abv": "5%",
+      "tint": "#e9c94a",
+      "featured": true,
+      "award": "Gold, World Beer Awards 2024",
+      "notes": "A burst of yuzu in an easy-drinking pilsner. Fruity on the palate with a crisp finish. A must for any citrus lover.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Yuzu.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "YUZU_4-pack-design.jpg"
+        }
+      }
+    },
+    {
+      "slug": "czech-pilsner",
+      "name": "Czech Pilsner",
+      "cat": "beer",
+      "style": "Pilsner",
+      "abv": "5%",
+      "tint": "#e6b93c",
+      "featured": true,
+      "notes": "A lager brewed in classic style, fragrant with hints of citrus hops and a clean, crisp finish. A true thirst-quencher.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Pilsner.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "PILSNER_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "PILSNER_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "lemon-sour-hard-seltzer",
+      "name": "Lemon Sour Hard Seltzer",
+      "cat": "beer",
+      "style": "Hard seltzer",
+      "abv": "4%",
+      "tint": "#f2e27a",
+      "featured": true,
+      "notes": "An alcoholic lemonade inspired by the brewing family's love of Japanese izakaya. Refreshing, citrusy, sweet yet sour. Best served on ice.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "lemon-sour.png"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "LEMON_4-pack-design-w-beer.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "LEMON_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "india-pale-ale",
+      "name": "India Pale Ale",
+      "cat": "beer",
+      "style": "IPA",
+      "abv": "5.8%",
+      "tint": "#c47a2c",
+      "featured": true,
+      "notes": "Brewed in the spirit of the beer once shipped to British troops in India. Spiced with potent hops, tempered by malt, with a long, smooth finish.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_IPA.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "IPA_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "IPA_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "dream-stout",
+      "name": "Dream Stout",
+      "cat": "beer",
+      "style": "Stout",
+      "abv": "4.5%",
+      "tint": "#3a2418",
+      "featured": true,
+      "notes": "Rich, chocolatey and roasty, with a smooth finish.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "Reddot-Dream-Stout.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "DSTOUT_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "DREAM-STOUT_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "chrysanthemum-rum-lager",
+      "name": "Chrysanthemum Rum Lager",
+      "cat": "beer",
+      "style": "Speciality lager",
+      "abv": "5%",
+      "tint": "#e8b04c",
+      "featured": true,
+      "notes": "Built by deconstructing white chrysanthemum and rum into a lager. Made to take a Chinese dinner to the next level.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Chrysanthemum.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "CHRYS_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "CHRYS_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "summer-ale",
+      "name": "Summer Ale",
+      "cat": "beer",
+      "style": "Golden ale",
+      "abv": "5%",
+      "tint": "#e2a83a",
+      "notes": "Malty, mildly hoppy and perfectly balanced. A golden ale with a floral nose that suits any occasion.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Summer.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "SUMMER_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "SUMMER_4-pack-design.jpg"
+        }
+      }
+    },
+    {
+      "slug": "heartlander-ale",
+      "name": "Heartlander Ale",
+      "cat": "beer",
+      "style": "Session ale",
+      "abv": "",
+      "tint": "#d08a32",
+      "notes": "An easy-drinking session ale made to take on the equatorial sun. Our brewer's reminder to keep dreaming, even when the going gets rough.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "Heartlander-Ale.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "HALE_4-pack-design.jpg"
+        },
+        "carton": {
+          "price": 150,
+          "img": "HAle_Carton-design-w-beer.jpg"
+        }
+      }
+    },
+    {
+      "slug": "weizen",
+      "name": "Weizen",
+      "cat": "beer",
+      "style": "Wheat beer",
+      "abv": "5%",
+      "tint": "#f0d27a",
+      "soldout": true,
+      "notes": "Big and bold, with clove, banana and orange on the nose and palate. A cloudy wheat beer that's refreshing and smooth.",
+      "formats": {
+        "bottle": {
+          "price": 7,
+          "img": "RedDot_Weizen.jpg"
+        },
+        "4-pack": {
+          "price": 26,
+          "img": "WEIZEN_4-pack-design.jpg"
+        }
+      }
+    },
+    {
+      "slug": "hidden-hills-cempaka-gin",
+      "name": "Hidden Hills Cempaka Gin",
+      "cat": "spirits",
+      "style": "Gin, 500ml",
+      "abv": "42%",
+      "tint": "#9fb7c9",
+      "notes": "From our Hidden Hills distillery. Cempaka flowers are harvested at night, when their fragrance peaks, and distilled straight away, from branch to bottle.",
+      "formats": {
+        "500ml": {
+          "price": 92,
+          "img": "HH_Cempaka1.jpg"
+        }
+      }
+    },
+    {
+      "slug": "hidden-hills-single-malt-whisky",
+      "name": "Hidden Hills Single Malt Whisky",
+      "cat": "spirits",
+      "style": "Single malt, 700ml",
+      "abv": "42%",
+      "tint": "#b5652a",
+      "notes": "Distilled and bottled on site, then finished in PX sherry casks. Layers of dried fruit, dark chocolate and warm spice, with a long, refined sweetness.",
+      "formats": {
+        "700ml": {
+          "price": 139,
+          "img": "HH_SingleMalt.jpg"
+        }
+      }
+    },
+    {
+      "slug": "hidden-hills-cask-strength-whisky",
+      "name": "Hidden Hills Cask-Strength Whisky",
+      "cat": "spirits",
+      "style": "Cask strength, 700ml",
+      "abv": "62%",
+      "tint": "#8a4a1f",
+      "notes": "An uncompromising expression, distilled and bottled entirely on site. Presented at cask strength for real depth, power and complexity.",
+      "formats": {
+        "700ml": {
+          "price": 235,
+          "was": 248,
+          "img": "HH_CaskStrength.jpg"
+        }
+      }
+    },
+    {
+      "slug": "island-spirits-yuzu-whiskey",
+      "name": "Island Spirits Yuzu Whiskey",
+      "cat": "spirits",
+      "style": "Yuzu whiskey, 500ml",
+      "abv": "27%",
+      "tint": "#e3b23c",
+      "notes": "Aged five years in American oak in Singapore, then infused with fresh yuzu. Have it as a highball with soda, neat, or as an easy whiskey sour.",
+      "formats": {
+        "500ml": {
+          "price": 78,
+          "img": "IS_Yuzu-Whiskey.jpg"
+        }
+      }
+    },
+    {
+      "slug": "island-spirits-bayberry-whisky-sour",
+      "name": "Island Spirits Bayberry Whisky Sour",
+      "cat": "spirits",
+      "style": "Ready-to-drink cocktail, 500ml",
+      "abv": "27%",
+      "tint": "#8e2a44",
+      "notes": "Smooth whisky blended with sweet, rich bayberries. Velvety and fruity. Enjoy it straight or over ice.",
+      "formats": {
+        "500ml": {
+          "price": 68,
+          "was": 78,
+          "img": "IS_Bayberry1.jpg"
+        }
+      }
+    },
+    {
+      "slug": "30l-keg",
+      "name": "30L Party Keg",
+      "cat": "kegs-gifts",
+      "style": "30 litres of RedDot craft beer",
+      "abv": "",
+      "tint": "#8a959c",
+      "notes": "Fresh RedDot craft beer by the keg, for parties and events. Price includes a S$350 refundable deposit.",
+      "formats": {
+        "keg": {
+          "price": 1104,
+          "img": "30l-keg.jpg"
+        }
+      }
+    },
+    {
+      "slug": "gift-voucher-50",
+      "name": "S$50 RedDot Gift Voucher",
+      "cat": "kegs-gifts",
+      "style": "Gift voucher",
+      "abv": "",
+      "tint": "#c8102e",
+      "soldout": true,
+      "notes": "A gift for any occasion. Valid for six months from the date of purchase.",
+      "formats": {
+        "voucher": {
+          "price": 50,
+          "img": "1.jpg"
+        }
+      }
+    },
+    {
+      "slug": "beer-shampoo",
+      "name": "Beer Shampoo",
+      "cat": "kegs-gifts",
+      "style": "Shampoo, 250ml",
+      "abv": "",
+      "tint": "#c9a227",
+      "notes": "Made with our own craft beer and plant-derived cleansers. A clean, Singapore-made formula that leaves hair refreshed.",
+      "formats": {
+        "250ml": {
+          "price": 10,
+          "img": "Copilot_20260826_180533.jpg"
+        }
+      }
+    }
+  ]
+}

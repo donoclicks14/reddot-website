@@ -33,8 +33,11 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
 {{nav}}
-        <a class="nav-shop" href="https://shop.reddotbrewhouse.com.sg/">Shop</a>
       </nav>
+      <button class="cart-btn" type="button" aria-controls="cart" aria-label="Open cart, 0 items">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span class="cart-count" hidden>0</span>
+      </button>
       <a class="btn btn-red header-cta" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
     </div>
@@ -48,6 +51,32 @@
 
   <a class="mobile-book btn btn-red" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
 
+  <div class="cart" id="cart" hidden>
+    <div class="cart-scrim" data-close></div>
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-head">
+        <h2 id="cart-title">Your cart</h2>
+        <button class="cart-close" type="button" data-close aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-ship" aria-live="polite">
+        <p class="cart-ship-text"></p>
+        <div class="cart-ship-bar"><span></span></div>
+      </div>
+      <ul class="cart-items" role="list"></ul>
+      <div class="cart-empty">
+        <p>Your cart is empty.</p>
+        <a class="btn btn-dark" href="/shop/">Browse the shop</a>
+      </div>
+      <div class="cart-foot">
+        <p class="cart-total"><span>Subtotal</span><strong></strong></p>
+        <button class="btn btn-red cart-checkout" type="button">Checkout</button>
+        <p class="cart-note" role="status"></p>
+        <p class="cart-legal">For customers aged 18 and above. Delivery within Singapore.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="/assets/products.js" defer></script>
   <script src="/assets/script.js" defer></script>
 </body>
 </html>

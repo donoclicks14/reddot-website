@@ -35,6 +35,17 @@ Pages link to each other through hub rows, the footer and in-text links.
 **At launch:** `src/_redirects` already 301-redirects every old Wix URL to its new page (Netlify format),
 so existing Google rankings carry over. Submit `/sitemap.xml` in Google Search Console.
 
+## Shop (added 2026-10-25)
+- `/shop/` and 18 product pages (`/shop/<slug>/`) are generated from `src/data/products.json`
+  (names, prices, tasting notes and ABV taken from their current WooCommerce shop).
+- Each beer is one product with Bottle / 4-pack / Carton options instead of three separate listings.
+- Product pages have Product + Offer structured data (price, currency, stock) for Google Shopping results.
+- The cart is a front-end demo. It's saved in the visitor's browser and has a free-delivery progress bar (S$75).
+  **Checkout shows a demo message.** At launch, connect it to Shopify/Stripe/WooCommerce for payments and delivery.
+- Product photos were downloaded from their shop and resized to 800px (`src/assets/products/`).
+  The originals were up to 2560px and made the old shop slow.
+- Heartlander Ale has no ABV listed on their shop. Weizen and the gift voucher are marked sold out, as they are there.
+
 ## Content to confirm with RedDot before going live
 - **Opening hours**: placeholder "Daily, 11am till late" (marked "to confirm" on the page).
 - **Beer descriptions** are short and generic. Get tasting notes and ABVs. Confirm Monster Green Lager is still pouring.

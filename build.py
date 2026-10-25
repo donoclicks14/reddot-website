@@ -19,6 +19,7 @@ Inside pages and partials:
     {{img:MEDIA_ID:W:H}}           Wix image URL cropped to W x H
     {{faq}}                        rendered FAQ section for the page
 """
+import hashlib
 import html
 import json
 import os
@@ -40,9 +41,8 @@ NAV = [
     ("food", "/menu/", "Food"),
     ("garden", "/dog-friendly-restaurant-dempsey/", "Dogs &amp; kids"),
     ("events", "/events/", "Events"),
-    ("tours", "/brewery-tour-singapore/", "Tours"),
-    ("trade", "/contract-brewing-singapore/", "Brew with us"),
     ("visit", "/visit/", "Visit"),
+    ("shop", "/shop/", "Shop"),
 ]
 
 BUSINESS = {
@@ -111,22 +111,190 @@ def strip_tags(s):
     return re.sub(r"<[^>]+>", "", s)
 
 
+# ---------- Shop ----------
+CATALOG = json.loads((SRC / "data" / "products.json").read_text())
+PRODUCTS = CATALOG["products"]
+IMG_BASE = CATALOG["img_base"]
+CATS = [("all", "Everything"), ("beer", "Beer"), ("spirits", "Spirits"), ("kegs-gifts", "Kegs &amp; gifts")]
+FORMAT_LABELS = {"bottle": "Bottle", "4-pack": "4-pack", "carton": "Carton"}
+FORMAT_DETAIL = {"bottle": "1 × 330ml bottle", "4-pack": "4 × 330ml bottles", "carton": "24 × 330ml bottles"}
+
+
+def money(n):
+    return f"S${n:,.0f}" if n == int(n) else f"S${n:,.2f}"
+
+
+def fmt_label(key):
+    return FORMAT_LABELS.get(key, key)
+
+
+def product_img(p, key=None):
+    key = key or next(iter(p["formats"]))
+    return IMG_BASE + p["formats"][key]["img"]
+
+
+def meta_line(p):
+    return p["style"] + (f", {p['abv']} ABV" if p["abv"] else "")
+
+
+def from_price(p):
+    prices = [f["price"] for f in p["formats"].values()]
+    return ("From " if len(prices) > 1 else "") + money(min(prices))
+
+
+def format_picker(p, name):
+    """Segmented control for beer formats; a single hidden value for everything else."""
+    keys = list(p["formats"])
+    if len(keys) == 1:
+        return f'<input type="hidden" name="{name}" value="{keys[0]}">'
+    opts = "".join(
+        f'<label><input type="radio" name="{name}" value="{k}"{" checked" if i == 0 else ""}>'
+        f'<span>{fmt_label(k)}<b>{money(f["price"])}</b></span></label>'
+        for i, (k, f) in enumerate(p["formats"].items()))
+    return f'<fieldset class="formats"><legend class="sr-only">Pack size</legend>{opts}</fieldset>'
+
+
+def price_html(p):
+    f = next(iter(p["formats"].values()))
+    if len(p["formats"]) == 1 and f.get("was"):
+        return f'<span class="price">{money(f["price"])}</span> <s class="was">{money(f["was"])}</s>'
+    return f'<span class="price">{from_price(p)}</span>'
+
+
+def product_card(p, variant="grid"):
+    url = f"/shop/{p['slug']}/"
+    sold = p.get("soldout")
+    badge = ""
+    if p.get("award"):
+        badge = '<span class="badge badge-gold">Award winner</span>'
+    elif any(f.get("was") for f in p["formats"].values()):
+        badge = '<span class="badge badge-red">On sale</span>'
+    if sold:
+        badge = '<span class="badge badge-muted">Sold out</span>'
+    action = ('<button class="btn btn-sold" type="button" disabled>Sold out</button>' if sold else
+              '<button class="btn btn-red btn-add" type="submit">Add to cart</button>')
+    picker = "" if sold else format_picker(p, f"f-{variant}-{p['slug']}")
+    return f"""<article class="product is-{variant}" data-cat="{p['cat']}" data-price="{min(f['price'] for f in p['formats'].values())}" style="--tint:{p['tint']}">
+  <a class="product-media" href="{url}" tabindex="-1" aria-hidden="true">{badge}<img loading="lazy" src="{product_img(p)}" alt=""></a>
+  <div class="product-body">
+    <p class="product-meta">{meta_line(p)}</p>
+    <h3 class="product-name"><a href="{url}">{p['name']}</a></h3>
+    <p class="product-price">{price_html(p)}</p>
+    <form class="add-form" data-product="{p['slug']}">{picker}{action}</form>
+  </div>
+</article>"""
+
+
+def shop_grid():
+    chips = "".join(
+        f'<button type="button" class="chip" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{label}</button>'
+        for k, label in CATS)
+    cards = "\n".join(product_card(p) for p in PRODUCTS)
+    return f"""<div class="shop-tools">
+  <div class="chips" role="group" aria-label="Filter products">{chips}</div>
+  <label class="sort">Sort by
+    <select id="sort"><option value="featured">Featured</option><option value="low">Price, low to high</option><option value="high">Price, high to low</option></select>
+  </label>
+</div>
+<p class="shop-count" aria-live="polite"><span id="shown">{len(PRODUCTS)}</span> products</p>
+<div class="product-grid" id="product-grid">
+{cards}
+</div>"""
+
+
+def shelf():
+    cards = "\n".join(product_card(p, "shelf") for p in PRODUCTS if p.get("featured"))
+    return f'<div class="shelf" tabindex="0" aria-label="Our beers, scrollable">{cards}</div>'
+
+
+def product_page(p, template):
+    keys = list(p["formats"])
+    sold = p.get("soldout")
+    first = p["formats"][keys[0]]
+    gallery = "".join(
+        f'<img src="{product_img(p, k)}" alt="{p["name"]}, {fmt_label(k).lower()}" data-format="{k}"'
+        f'{"" if i == 0 else " hidden"}{" loading=lazy" if i else ""}>'
+        for i, k in enumerate(keys))
+    thumbs = "" if len(keys) == 1 else '<div class="thumbs">' + "".join(
+        f'<button type="button" data-format="{k}" aria-label="Show {fmt_label(k).lower()}"{" aria-pressed=true" if i == 0 else ""}>'
+        f'<img src="{product_img(p, k)}" alt="" loading="lazy"></button>' for i, k in enumerate(keys)) + "</div>"
+    details = [("Style", p["style"])]
+    if p["abv"]:
+        details.append(("Alcohol", p["abv"] + " ABV"))
+    if p["cat"] == "beer":
+        details.append(("Pack sizes", ", ".join(f"{fmt_label(k)} ({FORMAT_DETAIL[k]})" for k in keys)))
+        details.append(("Brewed at", "RedDot BrewHouse, Dempsey Hill"))
+    details_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in details)
+    if sold:
+        buy = '<p class="soldout-note">Sold out for now. Ask the team at the brewhouse when it\'s back.</p>'
+    else:
+        buy = (f'<form class="add-form buy-form" data-product="{p["slug"]}">{format_picker(p, "format")}'
+               '<div class="buy-row"><label class="qty"><span class="sr-only">Quantity</span>'
+               '<button type="button" class="qty-btn" data-step="-1" aria-label="Decrease quantity">−</button>'
+               '<input type="number" name="qty" value="1" min="1" max="99" inputmode="numeric">'
+               '<button type="button" class="qty-btn" data-step="1" aria-label="Increase quantity">+</button></label>'
+               '<button class="btn btn-red btn-add" type="submit">Add to cart</button></div></form>')
+    award = f'<p class="badge badge-gold">{p["award"]}</p>' if p.get("award") else ""
+    related_pool = [q for q in PRODUCTS if q["slug"] != p["slug"] and q["cat"] == p["cat"] and not q.get("soldout")]
+    related = "\n".join(product_card(q) for q in related_pool[:4])
+    body = (template
+            .replace("{{p.name}}", p["name"]).replace("{{p.meta}}", meta_line(p))
+            .replace("{{p.notes}}", p["notes"]).replace("{{p.price}}", price_html(p) if len(keys) == 1 else f'<span class="price" data-live-price>{money(first["price"])}</span>')
+            .replace("{{p.gallery}}", gallery).replace("{{p.thumbs}}", thumbs)
+            .replace("{{p.details}}", details_html).replace("{{p.buy}}", buy).replace("{{p.award}}", award)
+            .replace("{{p.tint}}", p["tint"]).replace("{{p.related}}", related))
+    title = f"{p['name']} | Buy Online | RedDot BrewHouse"
+    if len(title) > 60:
+        title = f"{p['name']} | RedDot BrewHouse"
+    meta = {"title": title, "description": f"{p['notes']} {from_price(p)} with free delivery in Singapore over S$75."[:158],
+            "path": f"/shop/{p['slug']}/", "crumb": p["name"], "parent": "/shop/|Shop", "nav": "shop",
+            "og": SITE_URL + product_img(p)}
+    offers = [{"@type": "Offer", "name": fmt_label(k), "price": f["price"], "priceCurrency": "SGD",
+               "availability": "https://schema.org/" + ("OutOfStock" if sold else "InStock"),
+               "url": SITE_URL + meta["path"]} for k, f in p["formats"].items()]
+    schema = {"@type": "Product", "name": p["name"], "description": p["notes"], "image": SITE_URL + product_img(p),
+              "brand": {"@type": "Brand", "name": "Hidden Hills" if "Hidden Hills" in p["name"] else
+                        "Island Spirits" if "Island Spirits" in p["name"] else "RedDot BrewHouse"},
+              "offers": offers}
+    return meta, body, schema
+
+
+def products_js():
+    data = {p["slug"]: {"name": p["name"], "url": f"/shop/{p['slug']}/", "tint": p["tint"],
+                        "formats": {k: {"label": fmt_label(k), "price": f["price"], "img": BASE_PATH + IMG_BASE + f["img"]}
+                                    for k, f in p["formats"].items()}}
+            for p in PRODUCTS}
+    return f"window.RD_BASE={json.dumps(BASE_PATH)};\nwindow.RD_PRODUCTS={json.dumps(data, ensure_ascii=False)};\n"
+
+
 def build():
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(SRC / "assets", OUT / "assets")
     shutil.copy(SRC / "_redirects", OUT / "_redirects")
+    (OUT / "assets" / "products.js").write_text(products_js())
     base = (SRC / "base.html").read_text()
+    for asset in ("styles.css", "script.js", "products.js"):
+        digest = hashlib.md5((OUT / "assets" / asset).read_bytes()).hexdigest()[:8]
+        base = base.replace(f"/assets/{asset}", f"/assets/{asset}?v={digest}")
     faqs = json.loads((SRC / "data" / "faqs.json").read_text())
+    template = (SRC / "product.html").read_text()
     urls = []
 
+    jobs = []
     for page in sorted((SRC / "pages").glob("*.html")):
         meta, body = parse(page.read_text())
+        jobs.append((meta, body, None))
+    for p in PRODUCTS:
+        jobs.append(product_page(p, template))
+
+    for meta, body, extra_schema in jobs:
         path = meta["path"]
         canonical = SITE_URL + path
 
         faq_items = faqs.get(meta.get("faq", ""), [])
         body = body.replace("{{faq}}", render_faq(faq_items) if faq_items else "")
+        body = body.replace("{{shop-grid}}", shop_grid()).replace("{{shelf}}", shelf())
         body = expand(body)
 
         crumbs = [("Home", "/")]
@@ -151,13 +319,15 @@ def build():
         }]
         if len(crumbs) > 1:
             graph.append({"@type": "BreadcrumbList", "itemListElement": [
-                {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE_URL + u}
+                {"@type": "ListItem", "position": i + 1, "name": strip_tags(html.unescape(n)), "item": SITE_URL + u}
                 for i, (n, u) in enumerate(crumbs)]})
         if faq_items:
             graph.append({"@type": "FAQPage", "mainEntity": [
                 {"@type": "Question", "name": q,
                  "acceptedAnswer": {"@type": "Answer", "text": strip_tags(a)}}
                 for q, a in faq_items]})
+        if extra_schema:
+            graph.append(extra_schema)
         jsonld = json.dumps({"@context": "https://schema.org", "@graph": graph},
                             ensure_ascii=False, indent=1)
 
@@ -169,7 +339,7 @@ def build():
                .replace("{{title}}", html.escape(meta["title"]))
                .replace("{{description}}", html.escape(meta["description"]))
                .replace("{{canonical}}", canonical)
-               .replace("{{og_image}}", wix(meta.get("image", DEFAULT_IMAGE), 1200, 630))
+               .replace("{{og_image}}", meta.get("og") or wix(meta.get("image", DEFAULT_IMAGE), 1200, 630))
                .replace("{{nav}}", nav_html)
                .replace("{{jsonld}}", jsonld)
                .replace("{{content}}", body))
