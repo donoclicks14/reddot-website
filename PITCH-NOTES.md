@@ -4,7 +4,9 @@ Multi-page static site built from `src/` by `build.py` (Python 3, no dependencie
 
 - Build: `python3 build.py` (outputs `_site/`, plus sitemap.xml and robots.txt)
 - Preview: `python3 -m http.server 8790 -d _site`, then open http://localhost:8790
-- Deploy: Netlify reads `netlify.toml` (build `python3 build.py`, publish `_site`)
+- **Demo link:** https://donoclicks14.github.io/reddot-website/. Every push to `main` redeploys it through
+  `.github/workflows/pages.yml`. The demo is built with `BASE_PATH=/reddot-website NOINDEX=1`, so it's hidden from Google.
+- Production deploy: Netlify reads `netlify.toml` (build `python3 build.py`, publish `_site`)
 - **Edit files in `src/`, never `_site/`.** Pages are `src/pages/*.html` with front matter
   (title, description, path, breadcrumb, FAQ key). Shared blocks are in `src/partials/`, FAQs in `src/data/faqs.json`.
 

@@ -21,6 +21,7 @@ Inside pages and partials:
 """
 import html
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -29,6 +30,9 @@ ROOT = Path(__file__).parent
 SRC = ROOT / "src"
 OUT = ROOT / "_site"
 SITE_URL = "https://www.reddotbrewhouse.com.sg"
+# Demo hosting (GitHub Pages): BASE_PATH=/reddot-website NOINDEX=1 python3 build.py
+BASE_PATH = os.environ.get("BASE_PATH", "").rstrip("/")
+NOINDEX = os.environ.get("NOINDEX") == "1"
 DEFAULT_IMAGE = "be081f_91140c26e0654f219f41a013e1569e47~mv2.jpg"
 
 NAV = [
@@ -170,6 +174,10 @@ def build():
                .replace("{{jsonld}}", jsonld)
                .replace("{{content}}", body))
         out = expand(out)
+        if BASE_PATH:
+            out = re.sub(r'((?:href|src)=")/(?!/)', rf"\1{BASE_PATH}/", out)
+        if NOINDEX:
+            out = out.replace("<head>", '<head>\n  <meta name="robots" content="noindex, nofollow">', 1)
 
         dest = OUT / "404.html" if path == "/404/" else OUT / path.strip("/") / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -182,7 +190,8 @@ def build():
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{u}</loc></url>\n" for u in sorted(urls))
         + "</urlset>\n")
-    (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+    robots = "User-agent: *\nDisallow: /\n" if NOINDEX else f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
+    (OUT / "robots.txt").write_text(robots)
     print(f"Built {len(urls)} pages + 404 into {OUT.relative_to(ROOT)}/")
 
 
