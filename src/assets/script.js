@@ -184,13 +184,22 @@ function showFormat(fmt) {
   stage.querySelectorAll('img').forEach((img) => { img.hidden = img.dataset.format !== fmt; });
   document.querySelectorAll('.thumbs button').forEach((t) => t.setAttribute('aria-pressed', t.dataset.format === fmt));
   const buy = document.querySelector('.buy-form');
-  const live = document.querySelector('[data-live-price]');
-  if (buy && live) live.textContent = money(PRODUCTS[buy.dataset.product].formats[fmt].price);
+  if (buy) document.querySelectorAll('[data-live-price]').forEach((el) => { el.textContent = money(PRODUCTS[buy.dataset.product].formats[fmt].price); });
   const radio = document.querySelector(`.buy-form input[value="${fmt}"]`);
   if (radio) radio.checked = true;
 }
 document.querySelectorAll('.buy-form input[type="radio"]').forEach((r) => r.addEventListener('change', () => showFormat(r.value)));
 document.querySelectorAll('.thumbs button').forEach((t) => t.addEventListener('click', () => showFormat(t.dataset.format)));
+
+// Phone: a slim "Add to cart" bar appears whenever the buy controls are off-screen
+const buyForm = document.querySelector('.buy-form');
+const buyBar = document.querySelector('.buy-bar');
+if (buyForm && buyBar) {
+  new IntersectionObserver(([entry]) => {
+    buyBar.classList.toggle('show', !entry.isIntersecting);
+  }, { rootMargin: '0px 0px -40px 0px' }).observe(buyForm.querySelector('.buy-row'));
+  buyBar.querySelector('[data-buybar]').addEventListener('click', () => buyForm.requestSubmit());
+}
 
 // Shop grid: filter chips and sort
 const grid = document.getElementById('product-grid');

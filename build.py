@@ -78,6 +78,26 @@ def wix(media_id, w, h):
             f"/v1/fill/w_{w},h_{h},al_c,q_80,enc_auto/img.jpg")
 
 
+def add_srcset(page_html):
+    """Give every Wix photo a srcset so phones download a phone-sized file.
+    Full-width heroes also get a portrait crop for phones via <picture>."""
+    def repl(m):
+        tag, mid, w, h = m.group(0), m.group(2), int(m.group(3)), int(m.group(4))
+        if "srcset=" in tag:
+            return tag
+        widths = sorted({x for x in (480, 800, 1200, 1600, 2000) if x < w} | {w})
+        srcset = ", ".join(f"{wix(mid, x, round(h * x / w))} {x}w" for x in widths)
+        sizes = "100vw" if w >= 1600 else "(max-width: 960px) 100vw, 50vw" if w >= 1000 else "(max-width: 600px) 80vw, 33vw"
+        img = tag[:-1].rstrip("/").rstrip() + f' srcset="{srcset}" sizes="{sizes}" decoding="async">'
+        if w < 1600:
+            return img
+        portrait = ", ".join(f"{wix(mid, x, round(x * 1.6))} {x}w" for x in (600, 900, 1200))
+        return (f'<picture><source media="(max-width: 600px)" srcset="{portrait}" sizes="100vw">'
+                f"{img}</picture>")
+    return re.sub(r'<img [^>]*?src="(https://static\.wixstatic\.com/media/([^/]+)/v1/fill/w_(\d+),h_(\d+),al_c,q_80,enc_auto/img\.jpg)"[^>]*>',
+                  repl, page_html)
+
+
 def parse(text):
     m = re.match(r"---\n(.*?)\n---\n", text, re.S)
     meta = {}
@@ -235,6 +255,10 @@ def product_page(p, template):
                '<button type="button" class="qty-btn" data-step="1" aria-label="Increase quantity">+</button></label>'
                '<button class="btn btn-red btn-add" type="submit">Add to cart</button></div></form>')
     award = f'<p class="badge badge-gold">{p["award"]}</p>' if p.get("award") else ""
+    buybar = "" if sold else (
+        f'<div class="buy-bar" aria-hidden="true"><div><strong>{p["name"]}</strong>'
+        f'<span data-live-price>{money(first["price"])}</span></div>'
+        '<button class="btn btn-red" type="button" tabindex="-1" data-buybar>Add to cart</button></div>')
     related_pool = [q for q in PRODUCTS if q["slug"] != p["slug"] and q["cat"] == p["cat"] and not q.get("soldout")]
     related = "\n".join(product_card(q) for q in related_pool[:4])
     body = (template
@@ -242,7 +266,7 @@ def product_page(p, template):
             .replace("{{p.notes}}", p["notes"]).replace("{{p.price}}", price_html(p) if len(keys) == 1 else f'<span class="price" data-live-price>{money(first["price"])}</span>')
             .replace("{{p.gallery}}", gallery).replace("{{p.thumbs}}", thumbs)
             .replace("{{p.details}}", details_html).replace("{{p.buy}}", buy).replace("{{p.award}}", award)
-            .replace("{{p.tint}}", p["tint"]).replace("{{p.related}}", related))
+            .replace("{{p.tint}}", p["tint"]).replace("{{p.related}}", related).replace("{{p.buybar}}", buybar))
     title = f"{p['name']} | Buy Online | RedDot BrewHouse"
     if len(title) > 60:
         title = f"{p['name']} | RedDot BrewHouse"
@@ -342,8 +366,9 @@ def build():
                .replace("{{og_image}}", meta.get("og") or wix(meta.get("image", DEFAULT_IMAGE), 1200, 630))
                .replace("{{nav}}", nav_html)
                .replace("{{jsonld}}", jsonld)
-               .replace("{{content}}", body))
-        out = expand(out)
+               .replace("{{content}}", body)
+               .replace("{{body_class}}", "page-shop" if meta.get("nav") == "shop" else ""))
+        out = add_srcset(expand(out))
         if BASE_PATH:
             out = re.sub(r'((?:href|src)=")/(?!/)', rf"\1{BASE_PATH}/", out)
         if NOINDEX:

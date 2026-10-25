@@ -2,7 +2,9 @@
 <html lang="en-SG">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2f5ef">
+  <meta name="format-detection" content="telephone=no">
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
   <link rel="canonical" href="{{canonical}}">
@@ -23,7 +25,7 @@
 {{jsonld}}
   </script>
 </head>
-<body>
+<body class="{{body_class}}">
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -33,6 +35,9 @@
       </a>
       <nav class="nav" id="nav" aria-label="Main">
 {{nav}}
+        <a class="nav-extra" href="/brewery-tour-singapore/">Brewery tours</a>
+        <a class="nav-extra" href="/contract-brewing-singapore/">Brew with us</a>
+        <a class="nav-extra btn btn-red" href="https://cho.pe/dineatreddotbrewhousedempseyhillsg">Book a table</a>
       </nav>
       <button class="cart-btn" type="button" aria-controls="cart" aria-label="Open cart, 0 items">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>

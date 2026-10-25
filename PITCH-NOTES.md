@@ -46,6 +46,15 @@ so existing Google rankings carry over. Submit `/sitemap.xml` in Google Search C
   The originals were up to 2560px and made the old shop slow.
 - Heartlander Ale has no ABV listed on their shop. Weizen and the gift voucher are marked sold out, as they are there.
 
+## Phone optimisation (2026-10-26)
+- Every Wix photo gets a `srcset`, so phones download phone-sized files. Full-width heroes get a
+  portrait crop on phones (900×1440 instead of a 2000×1300 landscape).
+- Tap targets are 44px or more, inputs are 16px so iOS doesn't zoom, and layouts respect notches and the home bar (safe-area insets).
+- Mobile menu adds Brewery tours, Brew with us and a Book a table button.
+- Product pages show a fixed "Add to cart" bar when the buy controls are off-screen. The cart opens as a bottom sheet.
+- Shop pages hide the "Book a table" bar. The wedding price table stacks into cards.
+- No horizontal overflow at 320, 360, 375 or 414px on any page. Hover effects only apply on devices with a mouse.
+
 ## Content to confirm with RedDot before going live
 - **Opening hours**: placeholder "Daily, 11am till late" (marked "to confirm" on the page).
 - **Beer descriptions** are short and generic. Get tasting notes and ABVs. Confirm Monster Green Lager is still pouring.
